@@ -39,8 +39,8 @@ class Portfolio:
             weights /= np.sum(weights)
             self.weights_record.append(weights)
             returns,std = self.portfolio_annualised_performance(weights)
-            print (returns)
-            print (weights)
+            # print (returns)
+            # print (weights)
             self.results[0,i] = std
             self.results[1,i] = returns
             self.results[2,i] = (returns - risk_free_rate) / std
@@ -61,29 +61,17 @@ class Portfolio:
         min_vol_allocation["Allocation"] = [round(i*100, 2) for i in min_vol_allocation["Allocation"]]
         min_vol_allocation = min_vol_allocation.T
 
-        # print("-"*80)
         st.write("-"*80)
-        # print("Maximum Sharpe Ratio\n")
         st.write("Maximum Sharpe Ratio\n")
-        # print("Annual Returns:", round(rp, 2))
         st.write("Annual Returns:", round(rp*100, 2))
-        # print("Annual Risk:", round(sdp, 2))
         st.write("Annual Risk:", round(sdp*100, 2))
-        # print("\n")
         st.write("\n")
-        # print(max_sharpe_allocation)
         st.write(max_sharpe_allocation)
-        # print("-"*80)
         st.write("-"*80)
-        # print("Minimum Risk\n")
         st.write("Minimum Risk\n")
-        # print("Annual Returns:", round(rp_min, 2))
         st.write("Annual Returns:", round(rp_min*100, 2))
-        # print("Annual Risk:", round(sdp_min, 2))
         st.write("Annual Risk:", round(sdp_min*100, 2))
-        # print("\n")
         st.write("\n")
-        # print(min_vol_allocation)
         st.write(min_vol_allocation)
         st.write("-"*80)
 
