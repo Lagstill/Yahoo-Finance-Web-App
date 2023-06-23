@@ -51,41 +51,42 @@ class Portfolio:
         
         max_sharpe_idx = np.argmax(results[2])
         sdp, rp = results[0,max_sharpe_idx], results[1,max_sharpe_idx]
-        max_sharpe_allocation = pd.DataFrame(weights[max_sharpe_idx],index=self.mean_returns.index,columns=['Proporción'])
-        max_sharpe_allocation["Proporción"] = [round(i*100,2) for i in max_sharpe_allocation["Proporción"]]
+        max_sharpe_allocation = pd.DataFrame(weights[max_sharpe_idx],index=self.mean_returns.index,columns=['Allocation'])
+        max_sharpe_allocation["Allocation"] = [round(i*100, 2) for i in max_sharpe_allocation["Allocation"]]
         max_sharpe_allocation = max_sharpe_allocation.T
-        
+
         min_vol_idx = np.argmin(results[0])
-        sdp_min, rp_min = results[0,min_vol_idx], results[1,min_vol_idx]
-        min_vol_allocation = pd.DataFrame(weights[min_vol_idx],index=self.mean_returns.index,columns=['Proporción'])
-        min_vol_allocation["Proporción"] = [round(i*100,2)for i in min_vol_allocation["Proporción"]]
+        sdp_min, rp_min = results[0, min_vol_idx], results[1, min_vol_idx]
+        min_vol_allocation = pd.DataFrame(weights[min_vol_idx], index=self.mean_returns.index, columns=['Allocation'])
+        min_vol_allocation["Allocation"] = [round(i*100, 2) for i in min_vol_allocation["Allocation"]]
         min_vol_allocation = min_vol_allocation.T
-        
-        #print ("-"*80)
+
+        # print("-"*80)
         st.write("-"*80)
-        #print ("Sharpe Ratio Máximo\n")
-        st.write("Sharpe Ratio Máximo\n")
-        #print ("Rendimientos Anuales:", round(rp,2))
-        st.write("Rendimientos Anuales:", round(rp*100,2))
-        #print ("Riesgo Anual:", round(sdp,2))
-        st.write("Riesgo Anual:", round(sdp*100,2))
-        #print ("\n")
+        # print("Maximum Sharpe Ratio\n")
+        st.write("Maximum Sharpe Ratio\n")
+        # print("Annual Returns:", round(rp, 2))
+        st.write("Annual Returns:", round(rp*100, 2))
+        # print("Annual Risk:", round(sdp, 2))
+        st.write("Annual Risk:", round(sdp*100, 2))
+        # print("\n")
         st.write("\n")
-        #print (max_sharpe_allocation)
+        # print(max_sharpe_allocation)
         st.write(max_sharpe_allocation)
-        #print ("-"*80)
+        # print("-"*80)
         st.write("-"*80)
-        #print ("Riesgo Mínimo \n")
-        st.write("Riesgo Mínimo \n")
-        #print ("Rendimientos Anuales:", round(rp_min,2))
-        st.write("Rendimientos Anuales:", round(rp_min*100,2))
-        #print ("Riesgo Anual:", round(sdp_min,2))
-        st.write("Riesgo Anual:", round(sdp_min*100,2))
-        #print ("\n")
+        # print("Minimum Risk\n")
+        st.write("Minimum Risk\n")
+        # print("Annual Returns:", round(rp_min, 2))
+        st.write("Annual Returns:", round(rp_min*100, 2))
+        # print("Annual Risk:", round(sdp_min, 2))
+        st.write("Annual Risk:", round(sdp_min*100, 2))
+        # print("\n")
         st.write("\n")
-        #print (min_vol_allocation)
+        # print(min_vol_allocation)
         st.write(min_vol_allocation)
         st.write("-"*80)
+
         
         MaxSharpeRatio = go.Scatter(
             name='Maximium Sharpe Ratio',
@@ -126,17 +127,6 @@ class Portfolio:
         height=600)
     
         fig = go.Figure(data=data, layout=layout)
-        
-        '''
-        fig=plt.figure(figsize=(10, 7))
-        plt.scatter(results[0,:],results[1,:],c=results[2,:],cmap='YlGnBu', marker='o', s=10, alpha=0.3)
-        plt.colorbar()
-        plt.scatter(sdp,rp,marker='*',color='r',s=500, label='Sharpe Ratio Máximo')
-        plt.scatter(sdp_min,rp_min,marker='*',color='g',s=500, label='Riesgo Mínimo')
-        plt.title('Optimización de Portfolio')
-        plt.xlabel('Riesgo Anual')
-        plt.ylabel('Rendimiento Anual')
-        plt.legend(labelspacing=0.8)'''
         return fig
 
 

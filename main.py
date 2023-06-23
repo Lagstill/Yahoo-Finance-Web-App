@@ -21,7 +21,7 @@ st.sidebar.subheader('Dates')
 start_date = st.sidebar.date_input("Start date", datetime.date(2022, 1, 1))
 end_date = st.sidebar.date_input("End date", value=pd.to_datetime("today"))
 
-stocks = ("AAPL","MSFT","WALMEX.MX","ABNB","WMT","AMD","BIMBOA.MX","^GSPC")
+stocks = ("AAPL","MSFT","AMZN", "TSLA", "AMD", "GOOGL", "JNJ", "JPM", "NFLX", "V", "KO", "PFE")
 selected_stock = st.multiselect('Select Stocks',stocks)
 
 def AnnualReturns_Risk():
