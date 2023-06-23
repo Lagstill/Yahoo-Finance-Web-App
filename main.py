@@ -31,7 +31,8 @@ def AnnualReturns_Risk():
 		Annual_Returns = (Returns.mean() * 252) * 100
 		Annual_Risk = ((Returns.var() * 252) ** (1/2)) * 100
 		Sharpe = Annual_Returns / Annual_Risk
-		df = df.append({"Annual Returns %":Annual_Returns,"Annual Risk %":Annual_Risk,"Sharpe Ratio":Sharpe},ignore_index = True)
+		# df = df.append({"Annual Returns %":Annual_Returns,"Annual Risk %":Annual_Risk,"Sharpe Ratio":Sharpe},ignore_index = True)
+		df = pd.concat([df, pd.DataFrame({"Annual Returns %": [Annual_Returns], "Annual Risk %": [Annual_Risk], "Sharpe Ratio": [Sharpe]})], ignore_index=True)
 	df.index = [selected_stock]
 	return df
 
@@ -41,7 +42,8 @@ def AnnualReturns_Risk_Unique():
 	Annual_Returns = (Returns.mean() * 252) * 100
 	Annual_Risk = ((Returns.var() * 252) ** (1/2)) * 100
 	Sharpe = Annual_Returns / Annual_Risk
-	df = df.append({"Annual Returns %":Annual_Returns,"Annual Risk %":Annual_Risk,"Sharpe Ratio":Sharpe},ignore_index = True)
+	# df = df.append({"Annual Returns %":Annual_Returns,"Annual Risk %":Annual_Risk,"Sharpe Ratio":Sharpe},ignore_index = True)
+	df = pd.concat([df, pd.DataFrame({"Annual Returns %": [Annual_Returns], "Annual Risk %": [Annual_Risk], "Sharpe Ratio": [Sharpe]})], ignore_index=True)
 	df.index = [selected_stock]
 	return df
 
