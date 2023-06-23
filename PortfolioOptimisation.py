@@ -28,7 +28,10 @@ class Portfolio:
     
     def portfolio_annualised_performance(self,weights):
         self.returns = np.sum(self.mean_returns * weights) * 252
-        std = np.sqrt(np.dot(weights.T, np.dot(self.cov_matrix, weights))) * np.sqrt(252)
+        try:
+            std = np.sqrt(np.dot(weights.T, np.dot(self.cov_matrix, weights))) * np.sqrt(252)
+        except:
+            std = 0
         return self.returns, std
     
     def random_portfolios(self,num_portfolios,risk_free_rate=0):
